@@ -1,0 +1,21 @@
+name: VM-Runner Docker Test
+on: [push, workflow_dispatch]
+
+jobs:
+  simulate-dev-build:
+    # This must match the label you gave your VM runner
+    runs-on: self-hosted 
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image on VM
+        run: |
+          # This simulates the dev's build process on the Proxmox VM
+          docker build -t dev-sim-app:latest .
+          
+      - name: Verify Build
+        run: |
+          echo "Build successful on $(hostname)"
+          docker images | grep dev-sim-app
