@@ -4,11 +4,13 @@ name: Nightly Test
 on:
   schedule:
     - cron: "0 8 * * *"
+  workflow_dispatch: 
 jobs:
   docker:
     runs-on: ubuntu-latest
     env:
-      PROD_IMAGE: ghcr.io/metcalfc/docker-action-examples:edge
+      #PROD_IMAGE: ghcr.io/metcalfc/docker-action-examples:edge
+      PROD_IMAGE: ghcr.io/joj-pacovi/docker-action-examples:edge
       HUB_PULL_SECRET: NA 
     steps:
       # GitHub Actions do not automatically checkout your projects. If you need the code
